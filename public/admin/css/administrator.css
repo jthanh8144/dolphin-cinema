@@ -1,0 +1,45 @@
+.administrator-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form.card-body {
+  margin: 0;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.img-container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.img-wrap {
+  position: relative;
+}
+
+.img-account-profile {
+  width: 200px;
+}
+
+#upload-avatar {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 0 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#upload-avatar i {
+  font-size: 24px;
+}

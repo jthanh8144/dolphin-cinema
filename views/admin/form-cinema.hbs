@@ -1,0 +1,112 @@
+<link
+  href='/admin/plugins/sweet-alert2/sweetalert2.css'
+  rel='stylesheet'
+  type='text/css'
+/>
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box'>
+          <h4 class='page-title'>
+            {{#if cinema}}Update{{else}}Create{{/if}} cinema
+          </h4>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item'>
+              <a href='/admin/cinemas'>Cinemas</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              {{#if cinema}}Update{{else}}Create{{/if}} cinema
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <form 
+          action='/api/admin/cinemas{{#if cinema}}/{{cinema.id}}{{/if}}' 
+          method='{{#if cinema}}PUT{{else}}POST{{/if}}' 
+          class='card-body' 
+          id='cinema-form'
+        >
+          <div class='form-group row'>
+            <label for='cinema-name' class='col-sm-2 col-form-label'>
+              Cinema name
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='text'
+                name='name'
+                id='cinema-name'
+                value='{{cinema.name}}'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Location</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='location' name='locationId'>
+                {{#if cinema}}
+                <option 
+                  value='{{cinema.location.id}}' 
+                  hidden='hidden' 
+                  selected='selected'
+                >
+                  {{cinema.location.name}}
+                </option>
+                {{/if}}
+                {{#each locations}}
+                  <option value='{{this.id}}' >{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='description' class='col-sm-2 col-form-label'>
+              Description
+            </label>
+            <div class='col-sm-10'>
+              <textarea 
+                name='description'
+                class='form-control' 
+                id='description'
+              >{{cinema.description}}</textarea>
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='base-price' class='col-sm-2 col-form-label'>
+              Base price
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='number'
+                name='basePrice'
+                id='base-price'
+                value='{{round cinema.basePrice}}'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                {{#if cinema}}Update{{else}}Create{{/if}} cinema
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/cinema.js' defer></script>

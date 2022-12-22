@@ -1,0 +1,65 @@
+<div class='container'>
+  <div class='header-area'>
+    <div class='logo'>
+      <a href='/'><img src='/img/logo.png' alt='logo' /></a>
+    </div>
+    <div class='header-right'>
+      <form action='#'>
+        <select>
+          <option value='Movies'>Movies</option>
+          <option value='Movies'>Movies</option>
+          <option value='Movies'>Movies</option>
+        </select>
+        <input type='text' />
+        <button><i class='icofont icofont-search'></i></button>
+      </form>
+      <ul class='header-right__user'>
+        {{#if username}}
+          <li>
+            <a href='/users' class='header-right__username'>
+              {{__ 'Welcome'}}
+              {{username}}!
+            </a>
+          </li>
+          <li><a href='/logout'>{{__ 'Logout'}}</a></li>
+        {{else}}
+          <li>
+            <a class='login-popup' href=''>{{__ 'Login'}}</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+    <div class='menu-area'>
+      <div class='responsive-menu'></div>
+      <div class='mainmenu'>
+        <ul id='primary-menu'>
+          <li><a class='active' href='#'>{{__ 'Home'}}</a></li>
+          <li><a href='#'>{{__ 'Movies'}}</a></li>
+          <li><a href='#'>{{__ 'CelebritiesList'}}</a></li>
+          <li><a href='#'>{{__ 'Top Movies'}}</a></li>
+          <li><a href='#'>{{__ 'News'}}</a></li>
+          <li>
+            <a href='#'>{{__ 'Pages'}}
+              <i class='icofont icofont-simple-down'></i>
+            </a>
+            <ul>
+              <li><a href='#'>Blog Details</a></li>
+              <li><a href='#'>Movie Details</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href=''>
+              {{__ clanguage}}
+              <i class='icofont icofont-simple-down'></i>
+            </a>
+            <ul>
+              {{#each languages}}
+                <li><a href='/lang?lang={{this}}'>{{__ this}}</a></li>
+              {{/each}}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

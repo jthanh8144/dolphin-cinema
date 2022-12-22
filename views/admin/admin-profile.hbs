@@ -1,0 +1,158 @@
+<link
+  href='/admin/plugins/sweet-alert2/sweetalert2.css'
+  rel='stylesheet'
+  type='text/css'
+/>
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box'>
+          <h4 class='page-title'>My profile</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <div class='img-container'>
+          <div class='img-wrap p-3'>
+            <img
+              class='img-account-profile rounded-circle'
+              src='{{#if admin.avatarUrl}}{{admin.avatarUrl}}{{else}}/img/avatar-placeholder.png{{/if}}'
+              alt='avatar'
+            />
+            <label for='avatar-input' id='upload-avatar'>
+              <i class='mdi mdi-camera'></i>
+            </label>
+          </div>
+          <form 
+            action='/api/admin/upload-avatar'
+            enctype='multipart/form-data'
+            method='POST'
+            id='form-upload-avatar'
+          >
+            <input type='file' name='upload' id='avatar-input' accept='image/*' hidden/>
+            <input type='submit' class='submit-change btn btn-success' value='Save' hidden>
+          </form>
+        </div>
+        <form
+          action='/api/admin/profile'
+          method='PUT'
+          class='card-body'
+          id='update-profile-form'
+        >
+          <div class='form-group row'>
+            <!-- has-success has-warning has-danger -->
+            <label class='col-sm-2 col-form-label'>
+              Email
+            </label>
+            <div class='col-sm-10'>
+              <input
+                type='email'
+                class='form-control'
+                value='{{admin.email}}'
+                readonly
+              />
+              <!-- class: form-control-success form-control-warning form-control-danger -->
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='full-name' class='col-sm-2 col-form-label'>
+              Full name
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='text'
+                name='fullName'
+                id='full-name'
+                value='{{admin.fullName}}'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>
+              Role
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='text'
+                value='{{admin.role}}'
+                readonly
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                Update user
+              </button>
+            </div>
+          </div>
+        </form>
+        <form
+          action='/api/admin/profile/password'
+          method='PUT'
+          class='card-body'
+          id='update-password-form'
+        >
+          <div class='form-group row'>
+            <label for='password' class='col-sm-2 col-form-label'>
+              Old password
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='password'
+                name='oldPassword'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='password' class='col-sm-2 col-form-label'>
+              New password
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='password'
+                name='newPassword'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='password' class='col-sm-2 col-form-label'>
+              Confirm password
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='password'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                Change password
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/admin.js' defer></script>

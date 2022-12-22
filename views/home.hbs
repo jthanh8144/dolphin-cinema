@@ -1,0 +1,500 @@
+<link
+  rel='stylesheet'
+  href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'
+  integrity='sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=='
+  crossorigin='anonymous'
+  referrerpolicy='no-referrer'
+/>
+<section class='hero-area' id='home'>
+  <div class='container'>
+    <div class='hero-area-slider'>
+      {{#each movies}}
+        <div class='row hero-area-slide'>
+          <div class='col-lg-6 col-md-5'>
+            <div class='hero-area-content'>
+              <img crossorigin='anonymous' src='{{this.image}}' alt='about' />
+            </div>
+          </div>
+          <div class='col-lg-6 col-md-7'>
+            <div class='hero-area-content pr-50'>
+              <a href='/movies/{{this.id}}'><h2>{{__ this.name}}</h2></a>
+              <div class='review'>
+                <div class='author-review'>
+                  {{#times this.reviewScore}}
+                    <i class='fa-solid fa-star'></i>
+                  {{/times}}
+                  {{#times (sub 5 this.reviewScore)}}
+                    <i class='fa-regular fa-star'></i>
+                  {{/times}}
+                </div>
+                <h4>{{this.countRatings}} {{#with ..}}{{__ 'voters'}}{{/with}}</h4>
+              </div>
+              <p>{{this.description}}</p>
+              <h3>{{#with ..}}{{__ 'Cast'}}{{/with}}:</h3>
+              <div class='slide-cast'>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast1.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast3.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast4.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast5.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast6.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast7.png' alt='about' />
+                </div>
+                <div class='single-slide-cast text-center'>
+                  5+
+                </div>
+              </div>
+              <div class='slide-trailor'>
+                <a
+                  class='theme-btn theme-btn2 btn-trailer'
+                  href='{{this.trailerUrl}}'
+                >
+                  <i class='icofont icofont-play'></i>
+                  {{#with ..}}{{__ 'Watch Trailer'}}{{/with}}
+                </a>
+                <a class='theme-btn btn-book-ticket' href='' data-movie-id='{{this.id}}'>
+                  <i class='icofont icofont-ticket'></i>
+                  {{#with ..}}{{__ 'Tickets'}}{{/with}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class='hero-area-thumb'>
+      <div class='thumb-prev'>
+        <div class='row hero-area-slide'>
+          <div class='col-lg-6'>
+            <div class='hero-area-content'>
+              <img
+                crossorigin='anonymous'
+                src='{{prevMovie.image}}'
+                alt='about'
+              />
+            </div>
+          </div>
+          <div class='col-lg-6'>
+            <div class='hero-area-content pr-50'>
+              <h2>{{prevMovie.name}}</h2>
+              <div class='review'>
+                <div class='author-review'>
+                  {{#times prevMovie.reviewScore}}
+                    <i class='fa-solid fa-star'></i>
+                  {{/times}}
+                  {{#times (sub 5 prevMovie.reviewScore)}}
+                    <i class='fa-regular fa-star'></i>
+                  {{/times}}
+                </div>
+                <h4>{{prevMovie.countRatings}} {{__ 'voters'}}</h4>
+              </div>
+              <p>{{prevMovie.description}}</p>
+              <h3>{{__ 'Cast'}}:</h3>
+              <div class='slide-cast'>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast1.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast3.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast4.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast5.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast6.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast7.png' alt='about' />
+                </div>
+                <div class='single-slide-cast text-center'>
+                  5+
+                </div>
+              </div>
+              <div class='slide-trailor'>
+                <a class='theme-btn theme-btn2' href='{{prevMovie.trailerUrl}}'>
+                  <i class='icofont icofont-play'></i>
+                  {{__ 'Watch Trailer'}}
+                </a>
+                <a class='theme-btn btn-book-ticket' href=''>
+                  <i class='icofont icofont-ticket'></i>
+                  {{__ 'Tickets'}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='thumb-next'>
+        <div class='row hero-area-slide'>
+          <div class='col-lg-6'>
+            <div class='hero-area-content'>
+              <img
+                crossorigin='anonymous'
+                src='{{nextMovie.image}}'
+                alt='about'
+              />
+            </div>
+          </div>
+          <div class='col-lg-6'>
+            <div class='hero-area-content pr-50'>
+              <h2>{{nextMovie.name}}</h2>
+              <div class='review'>
+                <div class='author-review'>
+                  {{#times this.reviewScore}}
+                    <i class='fa-solid fa-star'></i>
+                  {{/times}}
+                  {{#times (sub 5 this.reviewScore)}}
+                    <i class='fa-regular fa-star'></i>
+                  {{/times}}
+                </div>
+                <h4>{{nextMovie.countRatings}} {{__ 'voters'}}</h4>
+              </div>
+              <p>{{nextMovie.description}}</p>
+              <h3>{{__ 'Cast'}}:</h3>
+              <div class='slide-cast'>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast1.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast3.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast4.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast5.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast6.png' alt='about' />
+                </div>
+                <div class='single-slide-cast'>
+                  <img src='/img/cast/cast7.png' alt='about' />
+                </div>
+                <div class='single-slide-cast text-center'>
+                  5+
+                </div>
+              </div>
+              <div class='slide-trailor'>
+                <a class='theme-btn theme-btn2' href='{{nextMovie.trailerUrl}}'>
+                  <i class='icofont icofont-play'></i>
+                  {{__ 'Watch Trailer'}}
+                </a>
+                <a class='theme-btn btn-book-ticket' href=''>
+                  <i class='icofont icofont-ticket'></i>
+                  {{__ 'Tickets'}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- hero area end -->
+<!-- portfolio section start -->
+<section class='portfolio-area pt-60'>
+  <div class='container'>
+    <div class='row flexbox-center'>
+      <div class='col-lg-6 text-center text-lg-left'>
+        <div class='section-title'>
+          <h1><i class='icofont icofont-movie'></i>
+            {{__ 'Spotlight This Month'}}</h1>
+        </div>
+      </div>
+      <div class='col-lg-6 text-center text-lg-right'>
+        <div class='portfolio-menu'>
+          <ul>
+            <li data-filter='.latest'>Latest</li>
+            <li data-filter='.top'>Top Rated</li>
+            <li data-filter='.soon'>Coming Soon</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class='row'>
+      <div class='col-lg-9'>
+        <div class='row portfolio-item'>
+          {{#each movieLatest}}
+            <div class='col-md-4 col-sm-6 latest'>
+              <div class='single-portfolio'>
+                <div class='single-portfolio-img'>
+                  <img
+                    crossorigin='anonymous'
+                    src='{{this.image}}'
+                    alt='portfolio'
+                  />
+                  <a
+                    href='{{this.trailerUrl}}'
+                    class='popup-youtube'
+                  >
+                    <i class='icofont icofont-ui-play'></i>
+                  </a>
+                </div>
+                <div class='portfolio-content'>
+                  <h2>{{__ this.name}}</h2>
+                  <div class='review'>
+                    <div class='author-review'>
+                      {{#times this.reviewScore}}
+                        <i class='fa-solid fa-star'></i>
+                      {{/times}}
+                      {{#times (sub 5 this.reviewScore)}}
+                        <i class='fa-regular fa-star'></i>
+                      {{/times}}
+                    </div>
+                    <h4>{{this.countRatings}} voters</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          {{#each movieTopRated}}
+            <div class='col-md-4 col-sm-6 top'>
+              <div class='single-portfolio'>
+                <div class='single-portfolio-img'>
+                  <img
+                    crossorigin='anonymous'
+                    src='{{this.image}}'
+                    alt='portfolio'
+                  />
+                  <a
+                    href='{{this.trailerUrl}}'
+                    class='popup-youtube'
+                  >
+                    <i class='icofont icofont-ui-play'></i>
+                  </a>
+                </div>
+                <div class='portfolio-content'>
+                  <h2>{{__ this.name}}</h2>
+                  <div class='review'>
+                    <div class='author-review'>
+                      {{#times this.reviewScore}}
+                        <i class='fa-solid fa-star'></i>
+                      {{/times}}
+                      {{#times (sub 5 this.reviewScore)}}
+                        <i class='fa-regular fa-star'></i>
+                      {{/times}}
+                    </div>
+                    <h4>{{this.countRatings}} voters</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          {{#each movieComingSoon}}
+            <div class='col-md-4 col-sm-6 soon'>
+              <div class='single-portfolio'>
+                <div class='single-portfolio-img'>
+                  <img
+                    crossorigin='anonymous'
+                    src='{{this.image}}'
+                    alt='portfolio'
+                  />
+                  <a
+                    href='{{this.trailerUrl}}'
+                    class='popup-youtube'
+                  >
+                    <i class='icofont icofont-ui-play'></i>
+                  </a>
+                </div>
+                <div class='portfolio-content'>
+                  <h2>{{__ this.name}}</h2>
+                  <div class='review'>
+                    <div class='author-review'>
+                      {{#times this.reviewScore}}
+                        <i class='fa-solid fa-star'></i>
+                      {{/times}}
+                      {{#times (sub 5 this.reviewScore)}}
+                        <i class='fa-regular fa-star'></i>
+                      {{/times}}
+                    </div>
+                    <h4>{{this.countRatings}} voters</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class='col-lg-3 text-center text-lg-left'>
+        <div class='portfolio-sidebar'>
+          <img src='/img/sidebar/sidebar1.png' alt='sidebar' />
+          <img src='/img/sidebar/sidebar2.png' alt='sidebar' />
+          <img src='/img/sidebar/sidebar3.png' alt='sidebar' />
+          <img src='/img/sidebar/sidebar4.png' alt='sidebar' />
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- portfolio section end -->
+<!-- video section start -->
+<section class='video ptb-90'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='section-title pb-20'>
+          <h1><i class='icofont icofont-film'></i>
+            {{__ 'Trailers & Videos'}}</h1>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class='row'>
+      <div class='col-md-9'>
+        <div class='video-area'>
+          <img src='/img/video/video1.png' alt='video' />
+          <a
+            href='https://www.youtube.com/watch?v=RZXnugbhw_4'
+            class='popup-youtube'
+          >
+            <i class='icofont icofont-ui-play'></i>
+          </a>
+          <div class='video-text'>
+            <h2>Angle of Death</h2>
+            <div class='review'>
+              <div class='author-review'>
+                <i class='icofont icofont-star'></i>
+                <i class='icofont icofont-star'></i>
+                <i class='icofont icofont-star'></i>
+                <i class='icofont icofont-star'></i>
+                <i class='icofont icofont-star'></i>
+              </div>
+              <h4>180k voters</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-3'>
+        <div class='row'>
+          <div class='col-md-12 col-sm-6'>
+            <div class='video-area'>
+              <img src='/img/video/video2.png' alt='video' />
+              <a
+                href='https://www.youtube.com/watch?v=RZXnugbhw_4'
+                class='popup-youtube'
+              >
+                <i class='icofont icofont-ui-play'></i>
+              </a>
+            </div>
+          </div>
+          <div class='col-md-12 col-sm-6'>
+            <div class='video-area'>
+              <img src='/img/video/video3.png' alt='video' />
+              <a
+                href='https://www.youtube.com/watch?v=RZXnugbhw_4'
+                class='popup-youtube'
+              >
+                <i class='icofont icofont-ui-play'></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- video section end -->
+<!-- news section start -->
+<section class='news'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='section-title pb-20'>
+          <h1>
+            <i class='icofont icofont-coffee-cup'></i>
+            {{__ 'Latest News'}}
+          </h1>
+        </div>
+      </div>
+    </div>
+    <hr />
+  </div>
+  <div class='news-slide-area'>
+    <div class='news-slider'>
+      <div class='single-news'>
+        <div class='news-bg-1'></div>
+        <div class='news-date'>
+          <h2><span>NOV</span> 25</h2>
+          <h1>2017</h1>
+        </div>
+        <div class='news-content'>
+          <h2>The Witch Queen</h2>
+          <p>Witch Queen is a tall woman with a slim build. She has pink hair,
+            which is pulled up under her hat, and teal eyes.</p>
+        </div>
+        <a href='#'>Read More</a>
+      </div>
+      <div class='single-news'>
+        <div class='news-bg-2'></div>
+        <div class='news-date'>
+          <h2><span>NOV</span> 25</h2>
+          <h1>2017</h1>
+        </div>
+        <div class='news-content'>
+          <h2>The Witch Queen</h2>
+          <p>Witch Queen is a tall woman with a slim build. She has pink hair,
+            which is pulled up under her hat, and teal eyes.</p>
+        </div>
+        <a href='#'>Read More</a>
+      </div>
+      <div class='single-news'>
+        <div class='news-bg-3'></div>
+        <div class='news-date'>
+          <h2><span>NOV</span> 25</h2>
+          <h1>2017</h1>
+        </div>
+        <div class='news-content'>
+          <h2>The Witch Queen</h2>
+          <p>Witch Queen is a tall woman with a slim build. She has pink hair,
+            which is pulled up under her hat, and teal eyes.</p>
+        </div>
+        <a href='#'>Read More</a>
+      </div>
+    </div>
+    <div class='news-thumb'>
+      <div class='news-next'>
+        <div class='single-news'>
+          <div class='news-bg-3'></div>
+          <div class='news-date'>
+            <h2><span>NOV</span> 25</h2>
+            <h1>2017</h1>
+          </div>
+          <div class='news-content'>
+            <h2>The Witch Queen</h2>
+            <p>Witch Queen is a tall woman with a slim build. She has pink hair,
+              which is pulled up under her hat, and teal eyes.</p>
+          </div>
+          <a href='#'>Read More</a>
+        </div>
+      </div>
+      <div class='news-prev'>
+        <div class='single-news'>
+          <div class='news-bg-2'></div>
+          <div class='news-date'>
+            <h2><span>NOV</span> 25</h2>
+            <h1>2017</h1>
+          </div>
+          <div class='news-content'>
+            <h2>The Witch Queen</h2>
+            <p>Witch Queen is a tall woman with a slim build. She has pink hair,
+              which is pulled up under her hat, and teal eyes.</p>
+          </div>
+          <a href='#'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- news section end -->

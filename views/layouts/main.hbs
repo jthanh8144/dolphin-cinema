@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{__ title}}</title>
+	<!-- Favicon Icon -->
+	<link rel="shortcut icon" href="/favicon.ico" />
+	{{> style}}
+</head>
+
+<body>
+	<!-- Toast -->
+	<div id="toast"></div>
+	<!-- Page loader -->
+	<div id="preloader"></div>
+	<!-- header section start -->
+	<header class="header">
+		{{> header }}
+	</header>
+	<div class="login-area">
+		{{> login-area}}
+	</div>
+	<div class="buy-ticket">
+		{{> buy-ticket}}
+	</div><!-- header section end -->
+	<!-- main area start -->
+	<!-- hero area start -->
+	<main class="main-section">
+		{{{body}}}
+	</main>
+	<!-- main area end -->
+	<!-- footer section start -->
+	<footer class="footer">
+		{{> footer}}
+	</footer><!-- footer section end -->
+	{{> script}}
+</body>
+
+</html>

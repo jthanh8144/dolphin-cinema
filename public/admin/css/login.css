@@ -1,0 +1,13 @@
+body {
+  overflow: hidden;
+  min-height: none !important;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrap {
+  height: 100vh;
+}

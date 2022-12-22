@@ -1,0 +1,68 @@
+<!-- breadcrumb area start -->
+<section class='breadcrumb-area'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='breadcrumb-area-content'>
+          <h1>{{__ 'Booking ticket success'}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb area end -->
+<!-- transformers area start -->
+<section class='transformers-area mb-5'>
+  <div class='container'>
+    <div class='transformers-box booking-success-box'>
+      <div class='row flexbox-center'>
+        <div class='col-lg-12 col-md-12 col-sm-12 ticket-item'>
+          <div class='row'>
+            <ul class='col-lg-8 col-md-8 col-sm-8 ticket-info'>
+              <li>
+                {{__ 'User ticket id'}}:
+                <span>{{userTicket.id}}</span>
+              </li>
+              <li>
+                {{__ 'Status'}}:
+                <span>{{__ 'Success'}}</span>
+              </li>
+              <li>
+                {{__ 'Movie'}}:
+                <span>{{userTicket.showtime.movie.name}}</span>
+              </li>
+              <li>
+                {{__ 'Showtime'}}:
+                <span>
+                  {{userTicket.showtime.showDate}}
+                  {{userTicket.showtime.time.time}}
+                  {{userTicket.showtime.cinemaRoom.name}}
+                  {{userTicket.showtime.cinemaRoom.cinema.name}}
+                </span>
+              </li>
+              <li>
+                {{__ 'Seats'}}:
+                <span>
+                  {{#each userTicket.tickets}}
+                    {{this.cinemaSeat.seat.row}}{{this.cinemaSeat.seat.column}}, 
+                  {{/each}}
+                </span>
+              </li>
+              <li>
+                Total price:
+                <span>{{numberWithCommas (round userTicket.totalPrice)}}</span> VND
+              </li>
+            </ul>
+            <div class='col-lg-4 col-md-4 col-sm-4 ticket-img'>
+              <img
+                src='{{userTicket.showtime.movie.image}}'
+                alt='img movie'
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- transformers area end -->

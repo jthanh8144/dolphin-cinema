@@ -1,0 +1,122 @@
+<link
+  href='/admin/plugins/sweet-alert2/sweetalert2.css'
+  rel='stylesheet'
+  type='text/css'
+/>
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box'>
+          <h4 class='page-title'>
+            {{#if adminData}}Update{{else}}Add{{/if}} administrator
+          </h4>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item'>
+              <a href='/admin/administrators'>Administrators</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              {{#if adminData}}Update{{else}}Add{{/if}} administrator
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <form 
+          action='/api/admin/administrators{{#if adminData}}/{{adminData.id}}{{/if}}' 
+          method='{{#if adminData}}PUT{{else}}POST{{/if}}' 
+          class='card-body' 
+          id='admin-form'
+        >
+          <div class='form-group row'>
+            <!-- has-success has-warning has-danger -->
+            <label for='email' class='col-sm-2 col-form-label'>
+              Email
+            </label>
+            <div class='col-sm-10'>
+              <input
+                type='email'
+                class='form-control'
+                id='email'
+                placeholder='name@example.com'
+                value='{{adminData.email}}'
+                {{#if adminData}}
+                readonly
+                {{else}}
+                name='email'
+                {{/if}}
+              />
+              <!-- class: form-control-success form-control-warning form-control-danger -->
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='full-name' class='col-sm-2 col-form-label'>
+              Full name
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='text'
+                name='fullName'
+                id='full-name'
+                placeholder='Vo Van Thanh'
+                value='{{adminData.fullName}}'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          {{! <div class='form-group row'>
+            <label for='password' class='col-sm-2 col-form-label'>
+              Password
+            </label>
+            <div class='col-sm-10'>
+              <input
+                class='form-control'
+                type='password'
+                value='hunter2'
+                id='password'
+              />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div> }}
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Role</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='role' name='role'>
+                <option 
+                  value='{{#if adminData.role}}{{adminData.role}}{{else}}admin{{/if}}' 
+                  hidden='hidden' 
+                  selected='selected'
+                >
+                  {{#if adminData.role}}{{adminData.role}}{{else}}admin{{/if}}
+                </option>
+                {{#each roles}}
+                  <option value='{{this}}' >{{this}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                {{#if adminData}}Update{{else}}Add{{/if}} administrator
+              </button>
+              {{#if adminData}}
+              <button class='btn btn-danger' id='rs-password'>Reset password</button>
+              {{/if}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/administrator.js' defer></script>

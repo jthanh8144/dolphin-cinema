@@ -1,0 +1,86 @@
+<link
+  href='/admin/plugins/sweet-alert2/sweetalert2.css'
+  rel='stylesheet'
+  type='text/css'
+/>
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box administrator-title'>
+          <div>
+            <h4 class='page-title'>
+              Cinemas rooms{{#if cinema}} of {{cinema.name}}{{/if}}
+            </h4>
+            <ol class='breadcrumb'>
+              <li class='breadcrumb-item'>
+                <a href='/admin/cinemas'>Cinemas</a>
+              </li>
+              <li class='breadcrumb-item active'>
+                Cinema rooms
+              </li>
+            </ol>
+          </div>
+          {{#compare role '!==' 'viewer'}}
+          <a href='/admin/cinema-rooms/create'>
+            Create cinema rooms
+            <i class='fas fa-plus'></i>
+          </a>
+          {{/compare}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='card'>
+    <div class='card-body'>
+      <div class='table-responsive'>
+        <table class='table mb-0'>
+          <thead class='thead-default'>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Cinema</th>
+              <th></th>
+              {{#compare role '!==' 'viewer'}}
+              <th></th>
+              {{/compare}}
+            </tr>
+          </thead>
+          <tbody id='list-cinema'>
+            {{#each rooms}}
+              <tr>
+                <th scope='row'>{{this.id}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.cinema.name}}</td>
+                <td>
+                  <a href='/admin/cinema-rooms/{{this.id}}/seats'>See seats</a>
+                </td>
+                {{#compare ../role '!==' 'viewer'}}
+                <td>
+                  <a href='/admin/cinemas-room/{{../id}}'>
+                    <i class='fas fa-pencil-alt'></i>
+                  </a>
+                  <a href='' class='delete-room-btn' data-id='{{../id}}'>
+                    <i class='fas fa-trash'></i>
+                  </a>
+                </td>
+                {{/compare}}
+              </tr>
+            {{else}}
+              <tr>
+                <th
+                  class='text-center'
+                  colspan='{{#compare role '!==' 'viewer'}}5{{else}}4{{/compare}}'
+                >This cinema hasn't room!</th>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/cinema-room.js' defer></script>

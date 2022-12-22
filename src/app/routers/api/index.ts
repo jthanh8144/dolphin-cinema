@@ -1,0 +1,5 @@
+export * from './user.route'
+export * from './movie.route'
+export * from './location.route'
+export * from './cinema.route'
+export * from './booking.route'

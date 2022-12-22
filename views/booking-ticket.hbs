@@ -1,0 +1,111 @@
+<!-- breadcrumb area start -->
+<section class='breadcrumb-area'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='breadcrumb-area-content'>
+          <h1>{{__ 'Booking ticket'}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb area end -->
+<!-- booking area start -->
+<section class='booking-area'>
+  <div class='container'>
+    <div class='transformers-box book-ticket'>
+      <div class='row flexbox-center'>
+        <div class='col-lg-8'>
+          <div class='buy-ticket-box'>
+            <h5>{{__ 'Seat'}}</h5>
+            <h6>{{__ 'Screen'}}</h6>
+            <div class='ticket-box-table'>
+              <table>
+                {{#each row}}
+                  <tr>
+                    <td>{{this}}</td>
+                  </tr>
+                {{/each}}
+              </table>
+              <table class='ticket-table-seat'>
+                <!--<tr>
+                  <td><span>1</span></td>
+                  <td class='active'><span>1</span></td>
+                  <td class='unavailable'><span>1</span></td>
+                </tr> -->
+                {{#each seats}}
+                  <tr>
+                    {{#each this}}
+                      <td 
+                        class='seat{{#if this.ticket}} unavailable{{/if}}' 
+                        data-cs-id='{{this.cinemaSeatId}}'
+                        data-name='{{this.row}}{{this.column}}'
+                        data-price='{{this.price}}'
+                      >
+                        <span>{{this.column}}</span>
+                      </td>
+                    {{/each}}
+                  </tr>
+                {{/each}}
+              </table>
+            </div>
+            <div class='ticket-box-available'>
+              <table class='ticket-table-seat seat-legend'>
+                <tr>
+                  <td><span>1</span></td>
+                  <th class='seat-legend__label'>Available</th>
+                  <td class='selecting'><span>2</span></td>
+                  <th class='seat-legend__label'>Selecting by another</th>
+                  <td class='unavailable'><span>3</span></td>
+                  <th class='seat-legend__label'>Unavailable</th>
+                  <td class='active'><span>4</span></td>
+                  <th class='seat-legend__label'>Selected</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class='col-lg-3 offset-lg-1'>
+          <div class='buy-ticket-box mtr-30'>
+            <h4>{{__ 'Your Information'}}</h4>
+            <ul>
+              <li>
+                <p>{{__ 'Location'}}</p>
+                <span 
+                  data-showtime-id='{{showtime.id}}' 
+                  id='showtime-id'
+                >
+                  {{showtime.cinemaRoom.cinema.name}}
+                </span>
+              </li>
+              <li>
+                <p>{{__ 'TIME'}}</p>
+                <span>{{showtime.showDate}} {{showtime.time.time}}</span>
+              </li>
+              <li>
+                <p>{{__ 'Movie name'}}</p>
+                <span>{{showtime.movie.name}}</span>
+              </li>
+              <li>
+                <p>{{__ 'Ticket number'}}</p>
+                <span id='tickets-store'>
+                  <!-- <span data-cs-id='1'>B1</span>, -->
+                </span>
+              </li>
+              <li>
+                <p>{{__ 'Price'}}</p>
+                <span id='total-price'>0</span> VND
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a href='' class='theme-btn' id='btn-submit-booking'>
+        <i class='icofont icofont-ticket'></i>
+        {{__ 'BOOK TICKET'}}
+      </a>
+    </div>
+  </div>
+</section>
+<!-- booking area end -->

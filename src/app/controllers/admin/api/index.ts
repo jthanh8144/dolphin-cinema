@@ -1,0 +1,5 @@
+export * from './admin-user.controller'
+export * from './user.controller'
+export * from './cinema.controller'
+export * from './cinema-seat.controller'
+export * from './admin.controller'

@@ -1,0 +1,5 @@
+export * from './administrators.route'
+export * from './user.route'
+export * from './cinema.route'
+export * from './cinema-seat.route'
+export * from './admin.route'

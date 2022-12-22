@@ -1,0 +1,5 @@
+export * from './user.controller'
+export * from './movie.controller'
+export * from './location.controller'
+export * from './cinema.controller'
+export * from './booking.controller'

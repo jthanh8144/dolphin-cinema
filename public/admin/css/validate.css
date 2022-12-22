@@ -1,0 +1,8 @@
+.form-message {
+  color: #eb315a;
+  display: none;
+}
+
+.input-wrap.invalid .form-message {
+  display: block;
+}

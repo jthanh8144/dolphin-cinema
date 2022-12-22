@@ -1,0 +1,6 @@
+export * from './api'
+export * from './admin'
+export * from './user.route'
+export * from './home.route'
+export * from './movie.route'
+export * from './booking.route'

@@ -1,0 +1,167 @@
+<section class='breadcrumb-area profile-header'></section>
+<!-- portfolio section start -->
+<section class='portfolio-area profile-area'>
+  <div class='container'>
+    <div class='row flexbox-center'>
+      <div class='col-lg-6 text-center text-lg-left'>
+        <div class='section-title'>
+          <h1><i class='icofont icofont-ui-user'></i> {{__ 'Profile'}}</h1>
+        </div>
+      </div>
+      <div class='col-lg-6 text-center text-lg-right'>
+        <div class='portfolio-menu'>
+          <ul>
+            <li data-filter='.info'>{{__ 'User infomations'}}</li>
+            <li data-filter='.change'>{{__ 'Change password'}}</li>
+            <li data-filter='.ticket'>{{__ 'Booked tickets'}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class='row portfolio-item user-profile-area mt-4'>
+      <div class='col-lg-4 col-md-6 col-sm-12 img-container info change'>
+        <img
+          class='img-account-profile rounded-circle mb-2 p-5'
+          src='{{#if user.avatarUrl}}{{user.avatarUrl}}{{else}}/img/avatar-placeholder.png{{/if}}'
+          alt='avatar'
+        />
+        <form 
+          action='/users/upload-avatar'
+          enctype='multipart/form-data'
+          method='POST'
+          id='form-upload-avatar'
+        >
+          <input type='file' name='upload' id='avatar-input' accept='image/*' hidden/>
+          <label for='avatar-input' id='upload-avatar'>
+            <i class='icofont icofont-camera'></i>
+          </label>
+          <input type='submit' class='submit-change theme-btn' value='Save' hidden>
+        </form>
+      </div>
+      <div class='col-lg-8 col-md-6 col-sm-12 info'>
+        <form id='update-user-form'>
+          <div class='form-group'>
+            <label for=''>{{__ 'Email'}}</label>
+            <input
+              class='form-control'
+              type='email'
+              readonly
+              value='{{user.email}}'
+            />
+          </div>
+          <div class='form-group'>
+            <label for=''>{{__ 'Name'}}</label>
+            <input
+              class='form-control'
+              type='text'
+              name='fullName'
+              value='{{user.fullName}}'
+            />
+            <span class='form-message'></span>
+          </div>
+          <div class='form-group'>
+            <label for=''>{{__ 'Birthday'}}</label>
+            <input
+              class='form-control'
+              type='date'
+              name='birthday'
+              value='{{user.birthday}}'
+            />
+            <span class='form-message'></span>
+          </div>
+          <div class='text-center'>
+            <input class='theme-btn' type='submit' value='{{__ 'Update user'}}' />
+          </div>
+        </form>
+      </div>
+      <div class='col-lg-8 col-md-6 col-sm-12 change'>
+        <form id='update-password-form'>
+          <div class='form-group'>
+            <label for=''>{{__ 'Old password'}}</label>
+            <input
+              class='form-control'
+              type='password'
+              name='oldPassword'
+              value=''
+            />
+            <span class='form-message'></span>
+          </div>
+          <div class='form-group'>
+            <label for=''>{{__ 'New password'}}</label>
+            <input
+              class='form-control'
+              type='password'
+              name='newPassword'
+              value=''
+            />
+            <span class='form-message'></span>
+          </div>
+          <div class='form-group'>
+            <label for=''>{{__ 'Confirm password'}}</label>
+            <input class='form-control' type='password' id='cf-pass' value='' />
+            <span class='form-message'></span>
+          </div>
+          <div class='text-center'>
+            <input class='theme-btn' type='submit' value='{{__ 'Update password'}}' />
+          </div>
+        </form>
+      </div>
+      <div class='col-lg-12 col-md-12 col-sm-12 ticket'>
+        <div class='row'>
+          {{#each bookedTicket}}
+            <div class='col-lg-12 col-md-12 col-sm-12 ticket-item'>
+              <div class='row'>
+                <ul class='col-lg-8 col-md-8 col-sm-8 ticket-info'>
+                  <li>
+                    {{__ 'User ticket id'}}:
+                    <span>{{this.id}}</span>
+                  </li>
+                  <li>
+                    {{__ 'Status'}}:
+                    <span>{{__ 'Success'}}</span>
+                  </li>
+                  <li>
+                    {{__ 'Movie'}}:
+                    <span>{{this.showtime.movie.name}}</span>
+                  </li>
+                  <li>
+                    {{__ 'Showtime'}}:
+                    <span>
+                      {{this.showtime.showDate}}
+                      {{this.showtime.time.time}}
+                      {{this.showtime.cinemaRoom.name}}
+                      {{this.showtime.cinemaRoom.cinema.name}}
+                    </span>
+                  </li>
+                  <li>
+                    {{__ 'Seats'}}:
+                    <span>
+                      {{#each this.tickets}}
+                        {{this.cinemaSeat.seat.row}}{{this.cinemaSeat.seat.column}}, 
+                      {{/each}}
+                    </span>
+                  </li>
+                  <li>
+                    {{__ 'Total price'}}:
+                    <span>{{round this.totalPrice}}</span> VND
+                  </li>
+                </ul>
+                <div class='col-lg-4 col-md-4 col-sm-4 ticket-img'>
+                  <img
+                    src='{{this.showtime.movie.image}}'
+                    alt='img movie'
+                  />
+                </div>
+              </div>
+            </div>
+          {{else}}
+            <h3 class='text-center'>{{__ 'No booking history'}}</h3>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- portfolio section end -->
+<script src='/js/user.js' defer></script>

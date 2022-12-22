@@ -1,0 +1,94 @@
+<link
+  href='/admin/plugins/sweet-alert2/sweetalert2.css'
+  rel='stylesheet'
+  type='text/css'
+/>
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box administrator-title'>
+          <div>
+            <h4 class='page-title'>
+              Cinemas seats{{#if room}} of room {{room.name}}, {{room.cinema.name}}
+              <input type='hidden' id='room-id' value='{{room.id}}'>{{/if}}
+            </h4>
+            <ol class='breadcrumb'>
+              {{#if room}}
+              <li class='breadcrumb-item'>
+                <a href='/admin/cinemas'>Cinemas</a>
+              </li>
+              <li class='breadcrumb-item active'>
+                <a href='/admin/cinemas/{{room.cinema.id}}/rooms'>Cinema rooms</a>
+              </li>
+              <li class='breadcrumb-item active'>
+                Cinema seats
+              </li>
+              {{/if}}
+            </ol>
+          </div>
+          {{#compare role '!==' 'viewer'}}
+          <a 
+            href='/admin/cinema-seats/create{{#if ../room}}?roomId={{../room.id}}{{/if}}'
+          >
+            Create cinema seat
+            <i class='fas fa-plus'></i>
+          </a>
+          {{/compare}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='card'>
+    <div class='card-body'>
+      <div class='table-responsive'>
+        <table class='table mb-0'>
+          <thead class='thead-default'>
+            <tr>
+              <th>ID</th>
+              <th>Room</th>
+              <th>Cinema</th>
+              <th>Position</th>
+              <th>Seat type</th>
+              {{#compare role '!==' 'viewer'}}
+              <th></th>
+              {{/compare}}
+            </tr>
+          </thead>
+          <tbody id='list-cinema-seats'>
+            {{#each seats}}
+              <tr>
+                <th scope='row'>{{this.id}}</th>
+                <td>{{this.cinemaRoom.name}}</td>
+                <td>{{this.cinemaRoom.cinema.name}}</td>
+                <td>{{this.seat.row}}{{this.seat.column}}</td>
+                <td>{{this.seatType.name}}</td>
+                {{#compare ../role '!==' 'viewer'}}
+                <td>
+                  <a href='/admin/cinema-seats/{{../id}}'>
+                    <i class='fas fa-pencil-alt'></i>
+                  </a>
+                  <a href='' class='delete-seat-btn' data-id='{{../id}}'>
+                    <i class='fas fa-trash'></i>
+                  </a>
+                </td>
+                {{/compare}}
+              </tr>
+            {{else}}
+              <tr>
+                <th
+                  class='text-center'
+                  colspan='{{#compare role '!==' 'viewer'}}6{{else}}5{{/compare}}'
+                >This room hasn't seat!</th>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/cinema-seat.js' defer></script>

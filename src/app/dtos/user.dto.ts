@@ -4,6 +4,9 @@ import {
   IsEmail,
   IsPositive,
   IsString,
+  IsInt,
+  Min,
+  Max,
 } from 'class-validator'
 
 export class CreateUserDto {
@@ -32,4 +35,14 @@ export class UpdateUserDto {
   @IsNumber()
   @IsPositive()
   age: number
+}
+
+export class CreateUserRatingDto {
+  @IsNumber()
+  movie_id: number
+
+  @IsInt()
+  @Min(1)
+  @Max(5)
+  score: number
 }

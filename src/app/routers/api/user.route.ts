@@ -1,7 +1,12 @@
 import { Router } from 'express'
 import { ApiUsersController } from '@app/controllers'
 import { validationMiddleware, loginMiddleware } from '@middlewares'
-import { FindUserByEmailDto } from '@dtos'
+import {
+  FindUserByEmailDto,
+  CreateUserRatingDto,
+  CreateCommentDto,
+  UpdateCommentDto,
+} from '@dtos'
 
 class ApiUsersRoute {
   public path = '/api/users'
@@ -36,6 +41,36 @@ class ApiUsersRoute {
         validationMiddleware(FindUserByEmailDto, 'body'),
         this.apiUsersController.sendEmailResetPassword,
       )
+
+    this.router
+      .route('/ratings')
+      .post(
+        loginMiddleware.isLogged,
+        validationMiddleware(CreateUserRatingDto, 'body', true),
+        this.apiUsersController.ratingMovie,
+      )
+    this.router
+      .route('/ratings/:id(\\d+)')
+      .get(this.apiUsersController.getUserRatingOfMovie)
+    this.router
+      .route('/comments')
+      .post(
+        loginMiddleware.isLogged,
+        validationMiddleware(CreateCommentDto, 'body', true),
+        this.apiUsersController.createComment,
+      )
+    this.router
+      .route('/comments/:id(\\d+)')
+      .get(
+        loginMiddleware.isLogged,
+        this.apiUsersController.getCommentOfUserById,
+      )
+      .put(
+        loginMiddleware.isLogged,
+        validationMiddleware(UpdateCommentDto, 'body', true),
+        this.apiUsersController.updateCommentOfUserById,
+      )
+      .delete(loginMiddleware.isLogged, this.apiUsersController.deleteComment)
   }
 }
 

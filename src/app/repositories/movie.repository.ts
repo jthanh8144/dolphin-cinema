@@ -107,4 +107,26 @@ export class MovieRepository extends Repository<Movie> {
       totalItem: count,
     }
   }
+
+  public getTotalCommentAndRatingOfMovieById(movie_id: number) {
+    return this.createQueryBuilder('movie')
+      .loadRelationCountAndMap('movie.countRatings', 'movie.userRatings')
+      .loadRelationCountAndMap('movie.countComments', 'movie.comments')
+      .where('movie.id = :id')
+      .setParameters({
+        id: movie_id,
+      })
+      .getOne()
+  }
+
+  public getAllRatingOfMovieById(movieId: number) {
+    return this.createQueryBuilder('movie')
+      .loadRelationCountAndMap('movie.countRatings', 'movie.userRatings')
+      .leftJoinAndSelect('movie.userRatings', 'userRatings')
+      .where('movie.id = :id')
+      .setParameters({
+        id: movieId,
+      })
+      .getOne()
+  }
 }

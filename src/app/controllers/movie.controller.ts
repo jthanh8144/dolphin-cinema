@@ -1,13 +1,15 @@
 import { __ } from 'i18n'
 import { NextFunction, Request, Response } from 'express'
-import { MovieRepository } from '@repositories'
+import { MovieRepository, CommentRepository } from '@repositories'
 import createHttpError from 'http-errors'
 import { dateFormat } from '@shared/constants'
 export class MovieController {
   private movieRepository: MovieRepository
+  private commentRepository: CommentRepository
 
   constructor() {
     this.movieRepository = new MovieRepository()
+    this.commentRepository = new CommentRepository()
   }
 
   public getMovieById = async (
@@ -16,6 +18,7 @@ export class MovieController {
     next: NextFunction,
   ): Promise<void> => {
     try {
+      const { user } = res.locals
       const movieId = +req.params.id
       const movie = await this.movieRepository.findOne({
         where: { id: movieId },
@@ -23,11 +26,15 @@ export class MovieController {
       if (!movie) {
         return next(createHttpError(404, 'Not Found'))
       }
-      const findOneMovieData = await this.movieRepository.getDetailMovieData(
-        movieId,
-      )
+      const [findOneMovieData, findTenCommentOfMovie] = await Promise.all([
+        this.movieRepository.getDetailMovieData(movieId),
+        this.commentRepository.getAllCommentByMovieId(movieId, 1),
+      ])
       res.render('movie-details', {
         data: findOneMovieData,
+        dataComments: findTenCommentOfMovie,
+        user,
+        username: user?.fullName,
         title: `Movie | ${findOneMovieData.name}`,
         dateOnlyFormat: dateFormat.dateOnlyFormat,
         displayDateFormat: dateFormat.displayDateFormat,

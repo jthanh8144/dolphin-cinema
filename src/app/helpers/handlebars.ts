@@ -29,6 +29,34 @@ const helpers = {
       return a !== b ? options.fn(this) : options.inverse(this)
     }
   },
+  ifCond: (v1: any, operator: string, v2: any, block: any) => {
+    switch (operator) {
+      case '==':
+        return v1 == v2 ? block.fn(this) : block.inverse(this)
+      case '===':
+        return v1 === v2 ? block.fn(this) : block.inverse(this)
+      case '!=':
+        return v1 != v2 ? block.fn(this) : block.inverse(this)
+      case '!==':
+        return v1 !== v2 ? block.fn(this) : block.inverse(this)
+      case '<':
+        return v1 < v2 ? block.fn(this) : block.inverse(this)
+      case '<=':
+        return v1 <= v2 ? block.fn(this) : block.inverse(this)
+      case '>':
+        return v1 > v2 ? block.fn(this) : block.inverse(this)
+      case '>=':
+        return v1 >= v2 ? block.fn(this) : block.inverse(this)
+      case '&&':
+        return v1 && v2 ? block.fn(this) : block.inverse(this)
+      case '||':
+        return v1 || v2 ? block.fn(this) : block.inverse(this)
+      default:
+        return block.inverse(this)
+    }
+  },
+  formatTimeAge: (date: string) =>
+    moment(new Date(date)).startOf('second').fromNow(),
 }
 
 for (const prop in helpers) {

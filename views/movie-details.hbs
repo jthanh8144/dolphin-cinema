@@ -1,3 +1,4 @@
+<link rel='stylesheet' href='/css/movie-detail.css' />
 <!-- breadcrumb area start -->
 <section class='breadcrumb-area'>
   <div class='container'>
@@ -131,42 +132,137 @@
             <p>{{data.description}}</p>
           </div>
           <div class='details-reply'>
-            <h2>Leave a Reply</h2>
-            <form action='#'>
+            <div class='transformers-box'>
+              <div class='rating-wrap'>
+                <h2 class='rating-title'>Your rating for movie</h2>
+                <div class='rating'>
+                  <input type='radio' name='rating' value='5' id='5' /><label
+                    for='5'
+                  >☆</label>
+                  <input type='radio' name='rating' value='4' id='4' /><label
+                    for='4'
+                  >☆</label>
+                  <input type='radio' name='rating' value='3' id='3' /><label
+                    for='3'
+                  >☆</label>
+                  <input type='radio' name='rating' value='2' id='2' /><label
+                    for='2'
+                  >☆</label>
+                  <input type='radio' name='rating' value='1' id='1' /><label
+                    for='1'
+                  >☆</label>
+                </div>
+                <div class="rating-submit mt-3">
+                  <a
+                    href="#"
+                    type='button'
+                    class='btn theme-btn'
+                    id="vote-btn"
+                    data-userId="{{user.id}}"
+                    data-idmovie="{{data.id}}"
+                  >Vote</a>
+                </div>
+              </div>
+              <div class='list-comment'>
+                <h2 class='comment-title'>Comments (<span id="totalComment"></span>)</h2>
+              </div>
               <div class='row'>
-                <div class='col-lg-4'>
-                  <div class='select-container'>
-                    <input type='text' placeholder='Name' />
-                    <i class='icofont icofont-ui-user'></i>
-                  </div>
-                </div>
-                <div class='col-lg-4'>
-                  <div class='select-container'>
-                    <input type='text' placeholder='Email' />
-                    <i class='icofont icofont-envelope'></i>
-                  </div>
-                </div>
-                <div class='col-lg-4'>
-                  <div class='select-container'>
-                    <input type='text' placeholder='Phone' />
-                    <i class='icofont icofont-phone'></i>
-                  </div>
-                </div>
-                <div class='col-lg-12'>
+                <div
+                  class='col-lg-12 mt-3 d-flex flex-row align-items-center p-3 form-color'
+                >
+                {{#if user.avatarUrl}}
+                  <img
+                    src="{{user.avatarUrl}}"
+                    width='60px'
+                    class='rounded-circle nameOfUser'
+                  />
+                  {{else}}
+                  <img
+                    src='/img/user.png'
+                    width='60px'
+                    class='rounded-circle nameOfUser'
+                  />
+                  {{/if}}
                   <div class='textarea-container'>
-                    <textarea placeholder='Type Here Message'></textarea>
-                    <button><i class='icofont icofont-send-mail'></i></button>
+                    <textarea
+                      placeholder='Type Here Message'
+                      class='form-textarea'
+                      id="comment-text"
+                    ></textarea>
+                    <a href="#" class='btn-submit-comment theme-btn' type="button" id="submit-comment">
+                      Send
+                      <i
+                        class='fa-solid fa-paper-plane'
+                      ></i></a>
                   </div>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class='details-comment'>
-            <a class='theme-btn theme-btn2' href='#'>Post Comment</a>
-            <p>You may use these HTML tags and attributes: You may use these
-              HTML tags and attributes: You may use these HTML tags and
-              attributes:
-            </p>
+              {{! list comment }}
+              <div class='commentOfUser-wrap'>
+                  {{#each dataComments}}
+                  <div class='mt-2 commentOfUser' data-wrapcomment="{{id}}">
+                    <div class='d-flex flex-row p-3'>
+                      {{#if user.avatarUrl}}
+                      <img
+                        src='{{user.avatarUrl}}'
+                        class='rounded-circle mr-3 img-avatar'
+                      />
+                      {{else}}
+                      <img
+                        src='/img/user.png'
+                        class='rounded-circle mr-3 img-avatar'
+                      />
+                      {{/if}}
+                      <div class='w-100'>
+                        <div
+                          class='d-flex justify-content-between align-items-center'
+                        >
+                          <div class='d-flex flex-row align-items-center'>
+                            <span class='nameOfUser'>{{user.fullName}}</span>
+                            <small class='ml-3'>{{formatTimeAge createdAt}}</small>
+                          </div>
+                          {{#ifCond user.id '===' ../user.id}}
+                          <div class='rounded-circle btn-ellipsis'><i
+                              class='fa-solid fa-ellipsis'
+                            ></i>
+                            <div class='menu-edit-comment'>
+                              <ul>
+                                <li><a
+                                    href='#modalEditComment'
+                                    class='edit-action'
+                                    data-toggle="modal"
+                                    role="button"
+                                    data-idcomment="{{../id}}"
+                                  ><i class='icofont icofont-edit'></i>
+                                    Edit</a></li>
+                                <li><a href='#modalConfirmDeleteComment' class='delete-action'
+                                       data-toggle="modal"
+                                       role="button"
+                                       data-idcomment="{{../id}}"><i
+                                       class='icofont icofont-garbage'
+                                    ></i>
+                                    Delete</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          {{/ifCond}}
+                        </div>
+                        <p
+                          class='text-justify comment-text mb-0'
+                          data-contentcomment ={{id}}
+                        >{{comment}}</p>
+                      </div>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
+              {{! end list comment }}
+                {{#ifCond data.countComments '>' 10}}
+                <div class='loadMore-wrap'>
+                  <a href='#' id='loadMore' class='theme-btn'  data-pageno="1">Load More</a>
+                </div>
+              {{/ifCond}}
+            </div>
           </div>
           <div class='details-thumb'>
             <div class='details-thumb-prev'>
@@ -200,3 +296,88 @@
     </div>
   </div>
 </section><!-- details area end -->
+
+
+
+<!--Modal: modalPush-->
+<div
+  class='modal fade'
+  id='modalEditComment'
+  tabindex='-1'
+  aria-labelledby='exampleModalLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog modal-dialog-centered' role='document'>
+    <!--Content-->
+    <div class='modal-content text-center modal-edit-comment'>
+      <!--Header-->
+      <div class='modal-header d-flex justify-content-center border-0 modal-header-edit'>
+        <p class='heading text-uppercase text-white'>Edit your comment</p>
+      </div>
+      <!--Body-->
+      <div class='modal-body'>
+          {{#if user.avatarUrl}}
+            <img
+              src='{{user.avatarUrl}}'
+              class='rounded-circle mr-3 img-avatar'
+            />
+            {{else}}
+            <img
+              src='/img/user.png'
+              class='rounded-circle mr-3 img-avatar'
+            />
+          {{/if}}
+        <textarea
+          placeholder='Type Here Message'
+          class='form-textarea'
+          id="editCommentMsg"
+        ></textarea>
+
+      </div>
+
+      <!--Footer-->
+      <div class='modal-footer d-flex justify-content-center border-0'>
+        <a
+          type='button'
+          class='btn btn-edit-comment text-white'
+          id="saveEditComment"
+        >Save</a>
+        <a
+          type='button'
+          class='btn btn-outline-edit-comment waves-effect text-white'
+          data-dismiss='modal'
+        >Cancel</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalPush-->
+
+<!--Modal: modalConfirmDelete-->
+<div class="modal fade right" id="modalConfirmDeleteComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header bg-danger border-0 d-flex justify-content-center">
+        <p class="heading text-uppercase text-white">Are you sure to delete this comment?</p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center border-0 modalConfirmDeleteComment">
+        <a type="button" class="btn btn-outline-edit-comment waves-effect text-white" id="btn-confirmDelete" >Yes</a>
+        <a type="button" class="btn btn-edit-comment text-white" data-dismiss="modal">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalConfirmDelete-->
+
+<script
+  src='//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js'
+></script>
+<script src="/js/moment.js"></script>
+<script src='/js/movie-detail.js'></script>

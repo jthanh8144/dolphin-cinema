@@ -17,6 +17,12 @@ class ApiMoviesRoute {
     this.router
       .route('/:id/showtimes')
       .post(this.apiMoviesController.getShowTimes)
+    this.router
+      .route('/:id/info')
+      .get(this.apiMoviesController.getAllCommentAndRatingOfMovieById)
+    this.router
+      .route('/:id/comments')
+      .get(this.apiMoviesController.getAllCommentOfMovieById)
   }
 }
 

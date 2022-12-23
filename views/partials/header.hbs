@@ -4,28 +4,33 @@
       <a href='/'><img src='/img/logo.png' alt='logo' /></a>
     </div>
     <div class='header-right'>
-      <form action='#'>
+      <form action='/movies/search' method='GET' id='search-form'>
         <select>
-          <option value='Movies'>Movies</option>
-          <option value='Movies'>Movies</option>
-          <option value='Movies'>Movies</option>
+          {{#if type}}
+          <option value='{{type}}'>{{type}}</option>
+          {{else}}
+          <option value='all'>{{__ 'All'}}</option>
+          <option value='name'>{{__ 'Movie name'}}</option>
+          <option value='writer'>{{__ 'Writer'}}</option>
+          <option value='director'>{{__ 'Director'}}</option>
+          {{/if}}
         </select>
         <input type='text' />
         <button><i class='icofont icofont-search'></i></button>
       </form>
       <ul class='header-right__user'>
         {{#if username}}
-          <li>
-            <a href='/users' class='header-right__username'>
-              {{__ 'Welcome'}}
-              {{username}}!
-            </a>
-          </li>
-          <li><a href='/logout'>{{__ 'Logout'}}</a></li>
+        <li>
+          <a href='/users' class='header-right__username'>
+            {{__ 'Welcome'}}
+            {{username}}!
+          </a>
+        </li>
+        <li><a href='/logout'>{{__ 'Logout'}}</a></li>
         {{else}}
-          <li>
-            <a class='login-popup' href=''>{{__ 'Login'}}</a>
-          </li>
+        <li>
+          <a class='login-popup' href=''>{{__ 'Login'}}</a>
+        </li>
         {{/if}}
       </ul>
     </div>
@@ -33,18 +38,17 @@
       <div class='responsive-menu'></div>
       <div class='mainmenu'>
         <ul id='primary-menu'>
-          <li><a class='active' href='#'>{{__ 'Home'}}</a></li>
-          <li><a href='#'>{{__ 'Movies'}}</a></li>
-          <li><a href='#'>{{__ 'CelebritiesList'}}</a></li>
-          <li><a href='#'>{{__ 'Top Movies'}}</a></li>
+          <li><a class='active' href='/'>{{__ 'Home'}}</a></li>
+          <li><a href='/movies'>{{__ 'Movies'}}</a></li>
+          <li><a href='/celebrities'>{{__ 'CelebritiesList'}}</a></li>
           <li><a href='#'>{{__ 'News'}}</a></li>
           <li>
             <a href='#'>{{__ 'Pages'}}
               <i class='icofont icofont-simple-down'></i>
             </a>
             <ul>
-              <li><a href='#'>Blog Details</a></li>
-              <li><a href='#'>Movie Details</a></li>
+              <li><a href='/blogs'>{{__ 'Blog'}}</a></li>
+              <li><a href='/blogs/detail'>{{__ 'Blog Details'}}</a></li>
             </ul>
           </li>
           <li>
@@ -54,7 +58,7 @@
             </a>
             <ul>
               {{#each languages}}
-                <li><a href='/lang?lang={{this}}'>{{__ this}}</a></li>
+              <li><a href='/lang?lang={{this}}'>{{__ this}}</a></li>
               {{/each}}
             </ul>
           </li>

@@ -25,6 +25,9 @@ class HomeRoute {
         fileUploadMiddleware,
         this.homeController.upload,
       )
+    this.router.route('/celebrities').get(this.homeController.getCelebrities)
+    this.router.route('/blogs').get(this.homeController.getBlogs)
+    this.router.route('/blogs/detail').get(this.homeController.getBlogDetail)
   }
 }
 

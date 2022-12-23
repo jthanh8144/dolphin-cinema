@@ -12,7 +12,9 @@ class MoviesRoute {
     this.initializeRoutes()
   }
   private initializeRoutes() {
+    this.router.route('/search').get(this.movieController.searchMovies)
     this.router.route('/:id(\\d+)').get(this.movieController.getMovieById)
+    this.router.route('/').get(this.movieController.getMovies)
   }
 }
 

@@ -131,4 +131,16 @@ export class HomeController {
       res.json({ message: 'Upload error' })
     }
   }
+
+  public getCelebrities = (req: Request, res: Response) => {
+    res.render('celebrities', { title: __('Celebrities') })
+  }
+
+  public getBlogs = (req: Request, res: Response) => {
+    res.render('blog', { title: __('Blogs') })
+  }
+
+  public getBlogDetail = (req: Request, res: Response) => {
+    res.render('blog-details', { title: __('Blog detail') })
+  }
 }

@@ -1,7 +1,7 @@
 import { Movie } from '@entities'
 import dataSource from '@shared/configs/data-source.config'
-import { Repository } from 'typeorm'
-import { LIMIT_MOVIES } from '@shared/constants'
+import { Repository, ILike } from 'typeorm'
+import { LIMIT_MOVIES, LIMIT_SEARCH } from '@shared/constants'
 
 export class MovieRepository extends Repository<Movie> {
   constructor() {
@@ -69,5 +69,42 @@ export class MovieRepository extends Repository<Movie> {
 
   public getMovieById(id: number) {
     return this.findOne({ where: { id } })
+  }
+
+  public getSearchResult(type: string, value: string, page = 1) {
+    const offset = (page - 1) * LIMIT_SEARCH
+    let query = null
+    if (type === 'all') {
+      query = this.queryCountRating()
+        .where('movies.name ilike :value')
+        .orWhere('movies.director ilike :value')
+        .orWhere('movies.writer ilike :value')
+    } else {
+      query = this.queryCountRating().where(`movies.${type} ilike :value`)
+    }
+    query
+      .setParameters({ value: `%${value}%` })
+      .limit(LIMIT_SEARCH)
+      .offset(offset)
+    return query.getMany()
+  }
+
+  public async countPages(type: string, value: string) {
+    const options = { where: [] }
+    if (type === 'all') {
+      options.where.push(
+        { name: ILike(`%${value}%`) },
+        { director: ILike(`%${value}%`) },
+        { writer: ILike(`%${value}%`) },
+      )
+    } else {
+      options.where.push({ [type]: ILike(`%${value}%`) })
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, count] = await this.findAndCount(options)
+    return {
+      countPage: Math.ceil(count / LIMIT_SEARCH),
+      totalItem: count,
+    }
   }
 }

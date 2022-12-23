@@ -1,0 +1,109 @@
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'
+  integrity='sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=='
+  crossorigin='anonymous' referrerpolicy='no-referrer' />
+<!-- breadcrumb area start -->
+<section class='breadcrumb-area'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='breadcrumb-area-content'>
+          <h1>Search Page</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb area end -->
+<div class='container'>
+  <div class='row'>
+    <div class='col-lg-12'>
+      <ul class='view-mode'>
+        <li class='view-mode-item active'>
+          <i class='fa-solid fa-border-all'></i>
+        </li>
+        <li class='view-mode-item'>
+          <i class='fa-solid fa-list'></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- portfolio section start -->
+<section class='search-area pt-60 mb-5'>
+  <div class='container'>
+    <div class="row mb-3 count-area">
+      <div class="col-lg-12">
+        Search results
+        <span id="count-item">{{search.length}}</span>
+        /
+        <span>{{totalItem}}</span>
+        movies
+      </div>
+    </div>
+    <div class='row search-item-grid'>
+      {{#each search}}
+      <div class='col-lg-3 col-md-4 col-sm-6 single-search-wrap'>
+        <div class='single-search'>
+          <div class='single-search-img'>
+            <img src='{{this.image}}' alt='search' />
+            <a href='{{this.trailerUrl}}' class='popup-youtube'>
+              <i class='icofont icofont-ui-play'></i>
+            </a>
+          </div>
+          <div class='search-content'>
+            <h2><a href='/movies/{{this.id}}'>{{this.name}}</a></h2>
+            <div class='review'>
+              <div class='author-review'>
+                {{#times this.reviewScore}}
+                <i class='fa-solid fa-star'></i>
+                {{/times}}
+                {{#times (sub 5 this.reviewScore)}}
+                <i class='fa-regular fa-star'></i>
+                {{/times}}
+              </div>
+              <h4>{{this.countRatings}} voters</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{else}}
+      <h2 class='text-center w-100'>No result</h1>
+        {{/each}}
+    </div>
+    <div class='row search-item-list hide'>
+      {{#each search}}
+      <div class='col-lg-12 col-md-12 col-sm-12 search-item'>
+        <div class='search-item-img'>
+          <img src='{{this.image}}' alt='movie'>
+        </div>
+        <div class='search-item-content'>
+          <h4 class='search-item-title'>
+            <a href='/movies/{{this.id}}'>{{this.name}}</a>
+          </h4>
+          <div class='search-item-score'>
+            <div class='author-review'>
+              {{#times this.reviewScore}}
+              <i class='fa-solid fa-star'></i>
+              {{/times}}
+              {{#times (sub 5 this.reviewScore)}}
+              <i class='fa-regular fa-star'></i>
+              {{/times}}
+            </div>
+            <h4>{{this.countRatings}} voters</h4>
+          </div>
+          <div class='search-item-desc'>
+            {{this.description}}
+          </div>
+        </div>
+      </div>
+      {{else}}
+      <h2 class='text-center w-100'>No result</h1>
+        {{/each}}
+    </div>
+    {{#if isHasLoadMore}}
+    <a href='' id='load-more'>Load More</a>
+    {{/if}}
+  </div>
+</section>
+<!-- portfolio section end -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

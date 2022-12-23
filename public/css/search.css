@@ -1,0 +1,97 @@
+.count-area {
+  font-size: 18px;
+}
+
+.count-area span {
+  color: #fff;
+  font-weight: 500;
+}
+
+.view-mode {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.view-mode-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.view-mode-item:hover {
+  color: #000;
+  background-color: #999;
+  border-radius: 5px;
+}
+
+.view-mode-item.active {
+  color: #000;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.view-mode-item + .view-mode-item {
+  margin-left: 5px;
+}
+
+.view-mode-item i {
+  font-size: 20px;
+}
+
+.search-item + .search-item {
+  margin-top: 10px;
+}
+
+.search-item-grid.hide {
+  display: none;
+}
+
+.search-item-list.hide {
+  display: none;
+}
+
+.search-item {
+  display: flex;
+}
+
+.search-item-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-item-img img {
+  border-radius: 10px;
+  width: 180px;
+  object-fit: contain;
+}
+
+.search-item-img + .search-item-content {
+  padding-left: 30px;
+}
+
+.search-item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.search-item-score {
+  display: flex;
+  align-items: center;
+}
+
+.search-item-score .author-review {
+  margin-right: 10px;
+}
+
+.search-item-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

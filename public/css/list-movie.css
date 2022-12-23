@@ -1,3 +1,64 @@
+.single-search-img {
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.search-content h2 {
+  margin-top: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.hero-area-content-img {
+  overflow: hidden;
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  border-radius: 10px;
+  align-content: center;
+  justify-content: center;
+}
+
+.hero-area-slide {
+  margin: 280px 15px 50px;
+  padding: 35px 0;
+}
+
+#load-more {
+  width: 200px;
+  color: #fff;
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-color: #778899;
+  transition: .3s;
+}
+#load-more:hover {
+  color: #778899;
+  background-color: #fff;
+  border: 1px solid #778899;
+  text-decoration: none;
+}
+
+#load-more.hidden {
+  display: none;
+}
+
 .single-portfolio-img {
   overflow: hidden;
   position: relative;

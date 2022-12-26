@@ -62,4 +62,43 @@ export class ShowtimeRepository extends Repository<Showtime> {
   public getTimeById(id: number) {
     return this.findOne({ where: { id } })
   }
+
+  // ----------------- for auto generate showtime today -----------------
+  public getShowtimeTodayAndTomorrow() {
+    const today = new Date()
+    return this.createQueryBuilder('showtimes')
+      .where('showtimes.showDate = :today')
+      .andWhere('showtimes.showDate = :tomorrow')
+      .setParameters({
+        today,
+        tomorrow: new Date(new Date().setDate(today.getDate() + 1)),
+      })
+      .getMany()
+  }
+
+  public async createShowtimeTodayAndTomorrow() {
+    const showtimes = await Promise.all([
+      this.findOne({ where: { id: 1 } }),
+      this.findOne({ where: { id: 2 } }),
+      this.findOne({ where: { id: 3 } }),
+      this.findOne({ where: { id: 4 } }),
+      this.findOne({ where: { id: 5 } }),
+    ])
+    if (
+      showtimes[0] &&
+      showtimes[1] &&
+      showtimes[2] &&
+      showtimes[3] &&
+      showtimes[4]
+    ) {
+      const today = new Date()
+      const tomorrow = new Date(new Date().setDate(today.getDate() + 1))
+      showtimes[0].showDate = today.toLocaleDateString()
+      showtimes[1].showDate = tomorrow.toLocaleDateString()
+      showtimes[2].showDate = today.toLocaleDateString()
+      showtimes[3].showDate = today.toLocaleDateString()
+      showtimes[4].showDate = tomorrow.toLocaleDateString()
+      await this.save(showtimes)
+    }
+  }
 }

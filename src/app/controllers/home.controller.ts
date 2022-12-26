@@ -5,7 +5,12 @@ import { plainToInstance } from 'class-transformer'
 import { NextFunction, Request, Response } from 'express'
 import { DecodedIdToken, getAuth } from 'firebase-admin/auth'
 
-import { UserRepository, MovieRepository } from '@repositories'
+import {
+  UserRepository,
+  MovieRepository,
+  // for auto generate showtime today
+  ShowtimeRepository,
+} from '@repositories'
 import { generateFileName } from '@app/helpers/upload.helper'
 import { minioClient } from '@shared/configs/minio.config'
 import { CreateUserDto } from '@dtos'
@@ -14,10 +19,14 @@ import { User } from '@entities'
 export class HomeController {
   private userRepository: UserRepository
   private movieRepository: MovieRepository
+  // for auto generate showtime today
+  private showtimeRepository: ShowtimeRepository
 
   constructor() {
     this.userRepository = new UserRepository()
     this.movieRepository = new MovieRepository()
+    // for auto generate showtime today
+    this.showtimeRepository = new ShowtimeRepository()
   }
 
   public home = async (
@@ -26,6 +35,13 @@ export class HomeController {
     next: NextFunction,
   ): Promise<void> => {
     try {
+      // for auto generate showtime today
+      const showtime =
+        await this.showtimeRepository.getShowtimeTodayAndTomorrow()
+      if (!showtime.length) {
+        await this.showtimeRepository.createShowtimeTodayAndTomorrow()
+      }
+
       const { user } = res.locals
       const [movies, movieLatest, movieTopRated, movieComingSoon] =
         await Promise.all([

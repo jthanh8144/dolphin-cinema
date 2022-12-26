@@ -1,6 +1,0 @@
-remove unnecessary view admin
-add view cinema, cinema room, cinema seat
-
-admin movie management
-
-feature comment rating user: pending

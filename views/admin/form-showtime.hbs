@@ -1,0 +1,131 @@
+<link href='/admin/plugins/sweet-alert2/sweetalert2.css' rel='stylesheet' type='text/css' />
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box'>
+          <h4 class='page-title'>
+            {{#if showtime}}Update{{else}}Create{{/if}} showtimes
+          </h4>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item'>
+              <a href='/admin/showtimes'>showtimes</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              {{#if showtime}}Update{{else}}Create{{/if}} showtimes
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <form action='/api/admin/showtimes{{#if showtime}}/{{showtime.id}}{{/if}}'
+          method='{{#if showtime}}PUT{{else}}POST{{/if}}' class='card-body' id='showtimes-form'>
+
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Room</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='select-room' name="cinemaRoomId">
+                {{#if showtime}}
+                <option value='{{showtime.cinemaRoom.id}}' hidden='hidden' selected='selected'>
+                  {{showtime.cinemaRoom.name}}
+                </option>
+                {{/if}}
+                {{#each rooms}}
+                <option value='{{this.id}}'>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Cinema</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='select-cinema'>
+                {{#if showtime}}
+                <option value='{{showtime.cinemaRoom.cinema.id}}' hidden='hidden' selected='selected'>
+                  {{showtime.cinemaRoom.cinema.name}}
+                </option>
+                {{/if}}
+                {{#each cinemas}}
+                <option value='{{this.id}}'>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Movie</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='select-seat' name="movieId">
+                {{#if showtime}}
+                <option value='{{showtime.movie.id}}' hidden='hidden' selected='selected'>
+                  {{showtime.movie.name}}
+                </option>
+                {{/if}}
+                {{#each movies}}
+                <option value='{{this.id}}'>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <label class='col-sm-2 col-form-label'>Time</label>
+            <div class='col-sm-10'>
+              <select class='form-control' id='select-seat' name="timeId">
+                {{#if showtime}}
+                <option value='{{showtime.time.id}}' hidden='hidden' selected='selected'>
+                  {{showtime.time.time}}
+                </option>
+                {{/if}}
+                {{#each time}}
+                <option value='{{this.id}}'>{{this.time}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <label for='showtimes-name' class='col-sm-2 col-form-label'>
+              Show date
+            </label>
+            <div class='col-sm-10'>
+              <input 
+                class='form-control'
+                type='date'
+                name='showDate'
+                id='showDate'
+                value='{{formatDate showtime.showDate 'YYYY-MM-DD'}}'
+              />
+              <script>
+                const element = document.querySelector('#showDate')
+                if (!element.value) {
+                  element.value = new Date().toISOString().substring(0, 10)
+                }
+              </script>
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                {{#if showtime}}Update{{else}}Create{{/if}} showtimes
+                {{!-- {{#if showtime}}Create{{else}}Update{{/if}} showtimes --}}
+
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/showtime.js' defer></script>

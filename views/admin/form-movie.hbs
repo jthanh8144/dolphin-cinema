@@ -1,0 +1,133 @@
+<link href='/admin/plugins/sweet-alert2/sweetalert2.css' rel='stylesheet' type='text/css' />
+<link rel='stylesheet' href='/admin/css/administrator.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box'>
+          <h4 class='page-title'>
+            {{#if movie}}Update{{else}}Create{{/if}} movie
+          </h4>
+          <ol class='breadcrumb'>
+            <li class='breadcrumb-item'>
+              <a href='/admin/movies'>Movies</a>
+            </li>
+            <li class='breadcrumb-item active'>
+              {{#if movie}}Update{{else}}Create{{/if}} movie
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <form action='/api/admin/movies{{#if movie}}/{{movie.id}}{{/if}}' method='{{#if movie}}PUT{{else}}POST{{/if}}'
+          class='card-body' id='movie-form'>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Movie name
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='text' name='name' id='movie-name' value='{{movie.name}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='description' class='col-sm-2 col-form-label'>
+              Description
+            </label>
+            <div class='col-sm-10'>
+              <textarea name='description' class='form-control' id='description'>{{movie.description}}</textarea>
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Trailer url
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='url' name='trailerUrl' id='url' value='{{movie.trailerUrl}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Review score
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='number' name='reviewScore' id='review-score'
+                value='{{movie.reviewScore}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Release date
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='date' name='releaseDate' id='release-date'
+                value='{{formatDate movie.releaseDate 'YYYY-MM-DD'}}' />
+              <script>
+                const element = document.querySelector('#release-date')
+                if (!element.value) {
+                  element.value = new Date().toISOString().substring(0, 10)
+                }
+              </script>
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Showtime Duration
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='number' name='showtimeDuration' id='showtime-duration'
+                value='{{movie.showtimeDuration}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Writer
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='text' name='writer' id='writer' value='{{movie.writer}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Director
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='text' name='director' id='director' value='{{movie.director}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <label for='movie-name' class='col-sm-2 col-form-label'>
+              Language
+            </label>
+            <div class='col-sm-10'>
+              <input class='form-control' type='text' name='language' id='language' value='{{movie.language}}' />
+              <div class='form-control-feedback'></div>
+            </div>
+          </div>
+          <div class='form-group row'>
+            <div class='col-sm-12 text-center'>
+              <button type='submit' class='btn btn-success'>
+                {{#if movie}}Update{{else}}Create{{/if}} movie
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/movie.js' defer></script>

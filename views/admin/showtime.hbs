@@ -1,0 +1,58 @@
+<link href='/admin/plugins/sweet-alert2/sweetalert2.css' rel='stylesheet' type='text/css' />
+<link rel='stylesheet' href='/admin/css/movie.css' />
+<div class='container-fluid'>
+  <div class='page-title-box'>
+    <div class='row align-items-center'>
+      <div class='col-md-12'>
+        <div class='page-title-box movie-title'>
+          <h4 class='page-title'>Showtimes</h4>
+          <a href='/admin/showtimes/add'>
+            Add showtimes
+            <i class='fas fa-plus'></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='card'>
+    <div class='card-body'>
+      <div class='table-responsive'>
+        <table class='table mb-0'>
+          <thead class='thead-default'>
+            <tr>
+              <th>ID</th>
+              <th>Location</th>
+              <th>Movie</th>
+              <th>Time</th>
+              <th>Show date</th>
+              <th>Action</th>
+
+            </tr>
+          </thead>
+          <tbody id='list-showtimes'>
+            {{#each showtimes}}
+            <tr>
+              <th scope='row'>{{this.id}}</th>
+              <td>{{this.cinemaRoom.name}}, {{this.cinemaRoom.cinema.name}}</td>
+              <td>{{this.movie.name}}</td>
+              <td>{{this.time.time}}</td>
+              <td>{{this.showDate}}</td>
+              <td>
+                <a href='/admin/showtimes/{{this.id}}'>
+                  <i class='fas fa-pencil-alt'></i>
+                </a>
+                <a href='' class='delete-showtime-btn' data-id='{{this.id}}'>
+                  <i class='fas fa-trash'></i>
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/admin/plugins/sweet-alert2/sweetalert2.min.js'></script>
+<script src='/admin/pages/sweet-alert.init.js'></script>
+<script src='/admin/js/showtime.js' defer></script>

@@ -1,0 +1,13 @@
+.movie-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form.card-body {
+  margin: 0;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}

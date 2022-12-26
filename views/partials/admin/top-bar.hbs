@@ -4,7 +4,7 @@
   <div class='topbar-left'>
     <a href='/admin' class='logo'>
       <img src='/img/logo.png' class='logo-lg' alt='logo' />
-      <img src='/img/favcion.png' class='logo-sm' alt='' height='24' />
+      <img src='/favicon.ico' class='logo-sm' alt='' height='24' />
     </a>
   </div>
 
@@ -46,7 +46,7 @@
           aria-expanded='false'
         >
           <img
-            src='/admin/images/flags/us_flag.jpg'
+            src='/admin/images/flags/en.jpg'
             class='mr-2'
             height='12'
             alt=''
@@ -57,31 +57,14 @@
         <div
           class='dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch'
         >
-          <a class='dropdown-item' href='#'><img
-              src='/admin/images/flags/french_flag.jpg'
+          <a class='dropdown-item' href='#'>
+            <img
+              src='/admin/images/flags/vn.jpg'
               alt=''
               height='16'
-            /><span> French </span></a>
-          <a class='dropdown-item' href='#'><img
-              src='/admin/images/flags/spain_flag.jpg'
-              alt=''
-              height='16'
-            /><span> Spanish </span></a>
-          <a class='dropdown-item' href='#'><img
-              src='/admin/images/flags/russia_flag.jpg'
-              alt=''
-              height='16'
-            /><span> Russian </span></a>
-          <a class='dropdown-item' href='#'><img
-              src='/admin/images/flags/germany_flag.jpg'
-              alt=''
-              height='16'
-            /><span> German </span></a>
-          <a class='dropdown-item' href='#'><img
-              src='/admin/images/flags/italy_flag.jpg'
-              alt=''
-              height='16'
-            /><span> Italian </span></a>
+            />
+            <span> Vietnamese </span>
+          </a>
         </div>
       </li>
 
@@ -92,92 +75,6 @@
         <a class='nav-link waves-effect' href='#' id='btn-fullscreen'>
           <i class='fas fa-expand noti-icon'></i>
         </a>
-      </li>
-
-      <!-- notification -->
-      <li class='dropdown notification-list list-inline-item'>
-        <a
-          class='nav-link dropdown-toggle arrow-none waves-effect'
-          data-toggle='dropdown'
-          href='#'
-          role='button'
-          aria-haspopup='false'
-          aria-expanded='false'
-        >
-          <i class='fas fa-bell noti-icon'></i>
-          <span class='badge badge-pill badge-danger noti-icon-badge'>3</span>
-        </a>
-        <div
-          class='dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-1'
-        >
-          <!-- item-->
-          <h6 class='dropdown-item-text'>
-            Notifications
-          </h6>
-          <div class='slimscroll notification-item-list'>
-            <!-- item-->
-            <a
-              href='javascript:void(0);'
-              class='dropdown-item notify-item active'
-            >
-              <div class='notify-icon bg-success'><i
-                  class='mdi mdi-cart-outline'
-                ></i></div>
-              <p class='notify-details'><b>Your order is placed</b><span
-                  class='text-muted'
-                >Dummy text of the printing and typesetting industry.</span></p>
-            </a>
-
-            <!-- item-->
-            <a href='javascript:void(0);' class='dropdown-item notify-item'>
-              <div class='notify-icon bg-danger'><i
-                  class='mdi mdi-message-text-outline'
-                ></i></div>
-              <p class='notify-details'><b>New Message received</b><span
-                  class='text-muted'
-                >You have 87 unread messages</span></p>
-            </a>
-
-            <!-- item-->
-            <a href='javascript:void(0);' class='dropdown-item notify-item'>
-              <div class='notify-icon bg-info'><i
-                  class='mdi mdi-filter-outline'
-                ></i></div>
-              <p class='notify-details'><b>Your item is shipped</b><span
-                  class='text-muted'
-                >It is a long established fact that a reader will</span></p>
-            </a>
-
-            <!-- item-->
-            <a href='javascript:void(0);' class='dropdown-item notify-item'>
-              <div class='notify-icon bg-success'><i
-                  class='mdi mdi-message-text-outline'
-                ></i></div>
-              <p class='notify-details'><b>New Message received</b><span
-                  class='text-muted'
-                >You have 87 unread messages</span></p>
-            </a>
-
-            <!-- item-->
-            <a href='javascript:void(0);' class='dropdown-item notify-item'>
-              <div class='notify-icon bg-warning'><i
-                  class='mdi mdi-cart-outline'
-                ></i></div>
-              <p class='notify-details'><b>Your order is placed</b><span
-                  class='text-muted'
-                >Dummy text of the printing and typesetting industry.</span></p>
-            </a>
-
-          </div>
-          <!-- All-->
-          <a
-            href='javascript:void(0);'
-            class='dropdown-item text-center notify-all text-primary'
-          >
-            View all
-            <i class='fi-arrow-right'></i>
-          </a>
-        </div>
       </li>
 
       <li class='dropdown notification-list list-inline-item'>
@@ -191,7 +88,7 @@
             aria-expanded='false'
           >
             <img
-              src='{{#if admin.avatarUrl}}{{admin.avatarUrl}}{{else}}/admin/images/users/user-1.jpg{{/if}}'
+              src='{{#if admin.avatarUrl}}{{admin.avatarUrl}}{{else}}/img/avatar-placeholder.png{{/if}}'
               alt='user'
               class='rounded-circle'
               crossorigin="anonymous"

@@ -1546,13 +1546,16 @@ table + .ticket-table-seat {
 
 .img-account-profile {
   position: relative;
-  width: 70%;
+  border: 1px solid #eb315a;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 }
 
 #upload-avatar {
   position: absolute;
-  bottom: 28%;
-  right: 28%;
+  bottom: 22%;
+  right: 22%;
   display: flex;
   justify-content: center;
   background-color: #fff;

@@ -8,20 +8,26 @@ FROM ${NODE_IMAGE} as builder
 
 WORKDIR /home/app
 
-COPY . .
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-RUN npm ci --ignore-scripts
+RUN npm install
+
+COPY . .
+
 RUN npm run build
 
 FROM ${NODE_IMAGE}
 
-COPY --from=builder /home/app/node_modules ./node_modules
+WORKDIR /home/app
+
 COPY --from=builder /home/app/dist ./dist
+COPY --from=builder /home/app/languages ./languages
+COPY --from=builder /home/app/node_modules ./node_modules
 COPY --from=builder /home/app/public ./public
 COPY --from=builder /home/app/views ./views
+COPY --from=builder /home/app/.env ./
 COPY --from=builder /home/app/package.json ./
 
-CMD ["npm", "start"]
-
 EXPOSE $APP_PORT
+
+CMD ["npm", "start"]

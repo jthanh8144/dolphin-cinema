@@ -94,8 +94,8 @@ export class UsersController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const { user, fileName } = res.locals
-      this.userRepository.updateAvatar(user.id, `/file/${encodeURI(fileName)}`)
+      const { user, url } = res.locals
+      await this.userRepository.updateAvatar(user.id, url)
       res.redirect('/users')
     } catch (error) {
       next(error)

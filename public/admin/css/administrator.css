@@ -26,6 +26,9 @@ form.card-body {
 
 .img-account-profile {
   width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border: 1px solid #eb315a;
 }
 
 #upload-avatar {

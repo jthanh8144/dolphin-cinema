@@ -986,6 +986,8 @@ dt {
 .notification-list .nav-user img {
   height: 36px;
   width: 36px;
+  object-fit: contain;
+  border: 1px solid #eb315a;
 }
 
 .notification-list .profile-dropdown {

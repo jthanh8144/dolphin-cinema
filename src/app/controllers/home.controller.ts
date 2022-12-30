@@ -11,8 +11,6 @@ import {
   // for auto generate showtime today
   ShowtimeRepository,
 } from '@repositories'
-import { generateFileName } from '@app/helpers/upload.helper'
-import { minioClient } from '@shared/configs/minio.config'
 import { CreateUserDto } from '@dtos'
 import { User } from '@entities'
 
@@ -136,15 +134,8 @@ export class HomeController {
   }
 
   public upload = async (req: Request, res: Response): Promise<void> => {
-    const fileName = generateFileName(req.file.originalname)
     try {
-      await minioClient.putObject(
-        process.env.BUCKET_NAME,
-        fileName,
-        req.file.buffer,
-      )
-      const url = `https://${process.env.MINIO_HOST}/${process.env.BUCKET_NAME}/${fileName}`
-      res.json({ url })
+      res.json({ url: res.locals.url })
     } catch (err) {
       console.log(err)
       res.json({ message: 'Upload error' })

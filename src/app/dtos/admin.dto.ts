@@ -20,6 +20,10 @@ export class UpdateAdminDto {
   @IsOptional()
   @IsEnum(AdminRole)
   role?: AdminRole
+
+  @IsOptional()
+  @IsString()
+  avatarUrl?: string
 }
 
 export class UpdateAdminPasswordDto {

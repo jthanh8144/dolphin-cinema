@@ -3,6 +3,9 @@ import Multer, { memoryStorage, FileFilterCallback } from 'multer'
 import { NextFunction, Request, Response } from 'express'
 import createError from 'http-errors'
 
+import { generateFileName } from '@app/helpers/upload.helper'
+import { minioClient } from '@shared/configs/minio.config'
+
 export const multerUploadMiddleware = Multer({
   storage: memoryStorage(),
   fileFilter: (
@@ -44,6 +47,13 @@ export const fileUploadMiddleware = async (
         .status(StatusCodes.BAD_REQUEST)
         .json({ message: 'Image is required' })
     }
+    const fileName = generateFileName(req.file.originalname)
+    await minioClient.putObject(
+      process.env.BUCKET_NAME,
+      fileName,
+      req.file.buffer,
+    )
+    res.locals.url = `https://${process.env.MINIO_HOST}/${process.env.BUCKET_NAME}/${fileName}`
     next()
   } catch (error) {
     next(error)

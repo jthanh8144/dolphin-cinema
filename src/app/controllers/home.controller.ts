@@ -39,7 +39,10 @@ export class HomeController {
       const showtime =
         await this.showtimeRepository.getShowtimeTodayAndTomorrow()
       if (!showtime.length) {
-        await this.showtimeRepository.createShowtimeTodayAndTomorrow()
+        await Promise.all([
+          this.showtimeRepository.createShowtimeTodayAndTomorrow(),
+          this.movieRepository.generateComingSoonMovie(),
+        ])
       }
 
       const { user } = res.locals

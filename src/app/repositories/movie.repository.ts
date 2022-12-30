@@ -129,4 +129,21 @@ export class MovieRepository extends Repository<Movie> {
       })
       .getOne()
   }
+
+  public async generateComingSoonMovie() {
+    const movies = await Promise.all([
+      this.findOne({ where: { id: 3 } }),
+      this.findOne({ where: { id: 4 } }),
+      this.findOne({ where: { id: 5 } }),
+      this.findOne({ where: { id: 6 } }),
+    ])
+    if (movies[0] && movies[1] && movies[2] && movies[3]) {
+      const today = new Date()
+      movies[0].releaseDate = new Date(new Date().setDate(today.getDate() + 1))
+      movies[1].releaseDate = new Date(new Date().setDate(today.getDate() + 2))
+      movies[2].releaseDate = new Date(new Date().setDate(today.getDate() + 3))
+      movies[3].releaseDate = new Date(new Date().setDate(today.getDate() + 4))
+      await this.save(movies)
+    }
+  }
 }

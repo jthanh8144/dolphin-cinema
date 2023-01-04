@@ -57,7 +57,7 @@ const renderShowtimes = async ({ movieId, locationId, date, cinemaId }) => {
   $('.cinema-list').html(html)
   $('.booking-form').submit(function (e) {
     e.preventDefault()
-    if (Cookies.get('token')) {
+    if (Cookies.get('authToken')) {
       this.submit()
     } else {
       toast({

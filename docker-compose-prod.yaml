@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      dockerfile: docker/Dockerfile.prod
+      context: .
+      args:
+        NODE_IMAGE: ${NODE_IMAGE}
+        APP_PORT: ${APP_PORT}
+    container_name: dolphin-movie
+    env_file:
+      - .env
+    ports:
+      - 3001:${APP_PORT}
+    command: sh -c "npm start"
+    networks:
+      - hana
+
+networks:
+  hana:
+    name: hana
+    external: true

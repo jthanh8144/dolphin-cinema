@@ -1,4 +1,4 @@
-ARG NODE_IMAGE=node:16.16.0-alpine
+ARG NODE_IMAGE=node:16.19.0-alpine
 ARG APP_PORT=3000
 
 # ======================================

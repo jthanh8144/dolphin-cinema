@@ -13,7 +13,7 @@ services:
       - .env
     ports:
       - 3001:${APP_PORT}
-    command: sh -c "npm start"
+    restart: always
     networks:
       - hana
 

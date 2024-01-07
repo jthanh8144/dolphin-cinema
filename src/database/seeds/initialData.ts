@@ -32,7 +32,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 110,
         description: 'Detective Conan Movie 26: Kurogane no Submarine',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975613530_conan-26.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975613530_conan-26.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -42,7 +42,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 110,
         description: 'Detective Conan Movie 25: The Bride Of Halloween',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975367395_conan-25.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975367395_conan-25.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -52,7 +52,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 120,
         description: '',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975406498_on_your_wedding_day.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975406498_on_your_wedding_day.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -62,7 +62,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 120,
         description: '',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975495132_be_with_you.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975495132_be_with_you.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -72,7 +72,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 120,
         description: '',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975535442_the_medium.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975535442_the_medium.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -82,7 +82,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 120,
         description: '',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975556213_incantation.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975556213_incantation.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },
@@ -92,7 +92,7 @@ import { databaseProvider } from '../../shared/providers/database.provider'
         showtimeDuration: 120,
         description: '',
         image:
-          'https://minio.jthanh8144.studio/dolphin-cinema/1674975586842_mat_biec.jpg',
+          'https://minio.jthanh8144.click/dolphin-cinema/1674975586842_mat_biec.jpg',
         reviewScore: 0,
         releaseDate: new Date(),
       },

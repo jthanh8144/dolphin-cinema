@@ -9,7 +9,8 @@ class CustomNamingStrategy
     tableOrName: Table | string,
     columnNames: string[],
     referencedTablePath?: string,
-    referencedColumnNames?: string[],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _referencedColumnNames?: string[],
   ): string {
     tableOrName =
       typeof tableOrName === 'string' ? tableOrName : tableOrName.name
